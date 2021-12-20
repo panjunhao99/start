@@ -8,25 +8,27 @@
 int main() {
 	int tape_len = 101;
 	int input_len = 11;
-	int scan_start = tape_len - input_len;//É¨Ãè¿ªÊ¼=ÇÃÈë³¤¶È-ÊäÈë³¤¶È=90 
+	int scan_start = tape_len - input_len;//æ‰«æå¼€å§‹=æ•²å…¥é•¿åº¦-è¾“å…¥é•¿åº¦=90 
 	int x,y;
-	int state = 0;//×´Ì¬¿ªÊ¼Îª0 
+	int state = 0;//çŠ¶æ€å¼€å§‹ä¸º0 
 	
-	char infi_tape[tape_len];//³õÊ¼ 
+	char infi_tape[tape_len];//åˆå§‹ 
 	char input[input_len];
-	char *scan;//É¨ÃèÖ¸Õë 
+	char *scan;//æ‰«ææŒ‡é’ˆ 
 	
 	do{
-		printf("¸Ã³ÌÐòÓÃÓÚÕ¹Ê¾f(x,y)=x^yµÄÍ¼Áé»ú£¬´ø³¤ÓÐÏÞ£¬ÊäÈëÊý¾ÝÖ®ºÍ²»Òª´óÓÚ999£¬,¼ÆËã½á¹û²»Òª´óÓÚ2048\n");
-		printf("ÇëÊäÈëx£º");
+		printf("è¯¥ç¨‹åºç”¨äºŽå±•ç¤ºf(x,y)=x^yçš„å›¾çµæœºï¼Œå¸¦é•¿æœ‰é™ï¼Œè¾“å…¥æ•°æ®ä¹‹å’Œä¸è¦å¤§äºŽ999ï¼Œ,è®¡ç®—ç»“æžœä¸è¦å¤§äºŽ2048\n");
+		printf("è¯·è¾“å…¥xï¼š");
+
+		
 		scanf("%d", &x); 
-		printf("ÇëÊäÈëy£º");
+		printf("è¯·è¾“å…¥yï¼š");
 		scanf("%d", &y); 
 		
 	}while( (x+y)>999 || x<0 || y<0);
 
 	for(int i=0; i<input_len; i++){
-		input[i] = ' ';//³õÊ¼»¯ÊäÈëÊý×é 
+		input[i] = ' ';//åˆå§‹åŒ–è¾“å…¥æ•°ç»„ 
 	}
 	
 	input[0] = '1';
@@ -36,10 +38,10 @@ int main() {
 	for(int i=0; i<y; i++){
 		input[i+x+3] = '1';
 	}
-	printf("ÊäÈë´ø£¨µÚÒ»¸ö1ÎªÉè¶¨µÄ¸ñÊ½£©£º\n%s\n", input);
+	printf("è¾“å…¥å¸¦ï¼ˆç¬¬ä¸€ä¸ª1ä¸ºè®¾å®šçš„æ ¼å¼ï¼‰ï¼š\n%s\n", input);
 	system("pause");
 	for(int i=0; i<tape_len; i++){
-		infi_tape[i] = ' ';//³õÊ¼È«Îª¿Õ 
+		infi_tape[i] = ' ';//åˆå§‹å…¨ä¸ºç©º 
 	}
 	
 	for(int i=0; input[i]!='\0'; i++){
@@ -49,9 +51,9 @@ int main() {
 	
 	scan = infi_tape + scan_start;
 	while(1){
-		if(state==0&&*scan=='1'){state = 0;*scan = 'z';scan++;}//µ±×´Ì¬Îª0£¬É¨Ãèµ½µÄÖµÎª1£¬×´Ì¬ÒÀ¾ÉÎª0£¬Ö¸ÕëÖ¸ÏòÖÃÎªz£¬Ö¸ÕëÇ°½ø¼ÓÒ» 
-		else if(state==0&&*scan==' '){state = 1;*scan = ' ';scan++;}//µ±×´Ì¬Îª0£¬É¨Ãèµ½µÄÖµÎª¿Õ£¬×´Ì¬ÖÃÎª1£¬Ö¸ÕëÖ¸ÏòÖÃÎª¿Õ£¬Ö¸ÕëÇ°½ø¼ÓÒ» 
-		else if(state==1&&*scan=='1'){state = 1;*scan = 'x';scan++;}//µ±×´Ì¬Îª1£¬É¨Ãèµ½µÄÖµÎª1£¬×´Ì¬ÖÃÎª1£¬Ö¸ÕëÖ¸ÏòÖÃÎªx£¬Ö¸Õë+1 
+		if(state==0&&*scan=='1'){state = 0;*scan = 'z';scan++;}//å½“çŠ¶æ€ä¸º0ï¼Œæ‰«æåˆ°çš„å€¼ä¸º1ï¼ŒçŠ¶æ€ä¾æ—§ä¸º0ï¼ŒæŒ‡é’ˆæŒ‡å‘ç½®ä¸ºzï¼ŒæŒ‡é’ˆå‰è¿›åŠ ä¸€ 
+		else if(state==0&&*scan==' '){state = 1;*scan = ' ';scan++;}//å½“çŠ¶æ€ä¸º0ï¼Œæ‰«æåˆ°çš„å€¼ä¸ºç©ºï¼ŒçŠ¶æ€ç½®ä¸º1ï¼ŒæŒ‡é’ˆæŒ‡å‘ç½®ä¸ºç©ºï¼ŒæŒ‡é’ˆå‰è¿›åŠ ä¸€ 
+		else if(state==1&&*scan=='1'){state = 1;*scan = 'x';scan++;}//å½“çŠ¶æ€ä¸º1ï¼Œæ‰«æåˆ°çš„å€¼ä¸º1ï¼ŒçŠ¶æ€ç½®ä¸º1ï¼ŒæŒ‡é’ˆæŒ‡å‘ç½®ä¸ºxï¼ŒæŒ‡é’ˆ+1 
 		else if(state==1&&*scan==' '){state = 2;*scan = ' ';scan++;}//
 		else if(state==2&&*scan=='1'){state = 2;*scan = 'y';scan++;}//
 		else if(state==2&&*scan==' '){state = 3;*scan = ' ';scan--;}//
@@ -120,7 +122,7 @@ int main() {
 	}
 	
 	// print entire tape
-	printf("×îºóµÄ´ø×´Ì¬Îª£º\n%s\n", infi_tape);
+	printf("æœ€åŽçš„å¸¦çŠ¶æ€ä¸ºï¼š\n%s\n", infi_tape);
 	int res = 0; 
 	for(int i=0; i<tape_len; i++){
 		int j = 0;
@@ -132,7 +134,7 @@ int main() {
 			break;
 		}
 	}
-	printf("¼ÆËã½á¹ûÎª£º%d\n", res);
+	printf("è®¡ç®—ç»“æžœä¸ºï¼š%d\n", res);
 	system("pause");
 	return 0;
 }
